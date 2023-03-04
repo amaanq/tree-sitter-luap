@@ -1,14 +1,48 @@
 {
   "name": "tree-sitter-luap",
-  "version": "1.0.0",
-  "description": "tree-sitter parser for lua patterns",
+  "version": "0.0.1",
+  "description": "Lua Patterns grammar for tree-sitter",
   "main": "bindings/node",
-  "author": "vhyrro",
+  "keywords": [
+    "parser",
+    "lexer",
+    "lua",
+    "lua patterns"
+  ],
+  "author": "Vhyrro <vhyrro@gmail.com",
+  "contributors": [
+    "Amaan Qureshi <amaanq12@gmail.com>"
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amaanq/tree-sitter-luap/issues"
+  },
+  "homepage": "https://github.com/amaanq/tree-sitter-luap#readme",
   "dependencies": {
     "nan": "^2.15.0"
   },
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-google": "^0.14.0",
+    "tree-sitter-cli": "^0.20.7"
+  },
+  "repository": "https://github.com/amaanq/tree-sitter-luap",
   "scripts": {
-    "gen": "tree-sitter generate"
-  }
+    "build": "tree-sitter generate && node-gyp build",
+    "lint": "eslint grammar.js",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.luap",
+      "injection-regex": "luap",
+      "file-types": [
+        "luap"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
 }

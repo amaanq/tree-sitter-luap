@@ -1,27 +1,24 @@
 [package]
 name = "tree-sitter-luap"
-description = "luap grammar for the tree-sitter parsing library"
+description = "Lua Patterns grammar for tree-sitter"
 version = "0.0.1"
+authors = ["Vhyrro <vhyrro@gmail.com>", "Amaan Qureshi <amaanq12@gmail.com>"]
+license = "MIT"
 readme = "bindings/rust/README.md"
 keywords = ["incremental", "parsing", "luap"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-luap"
-edition = "2018"
-license = "MIT"
+repository = "https://github.com/amaanq/tree-sitter-luap"
+edition = "2021"
+autoexamples = false
 
 build = "bindings/rust/build.rs"
-include = [
-  "bindings/rust/*",
-  "grammar.js",
-  "queries/*",
-  "src/*",
-]
+include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
 
 [lib]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "~0.20"
+tree-sitter = "~0.20.9"
 
 [build-dependencies]
 cc = "1.0"
