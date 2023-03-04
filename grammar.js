@@ -1,155 +1,167 @@
-let i = token.immediate
+/**
+ * @file Luap grammar for tree-sitter
+ * @author Vhyrro <vhyrro@gmail.com>
+ * @author Amaan Qureshi <amaanq12@gmail.com>
+ * @license MIT
+ * @see {@link https://www.lua.org/pil/20.2.html|official syntax spec}
+ */
+
+/* eslint-disable arrow-parens */
+/* eslint-disable camelcase */
+/* eslint-disable-next-line spaced-comment */
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
 
 module.exports = grammar({
-    name: "luap",
+  name: 'luap',
 
-    inline: $ => [
-        $.quantifier,
-    ],
+  inline: $ => [
+    $.quantifier,
+  ],
 
-    conflicts: $ => [
-        [$.set, $.range],
-        [$.negated_set, $.range],
-    ],
+  conflicts: $ => [
+    [$.set, $.range],
+    [$.negated_set, $.range],
+  ],
 
-    rules: {
-        pattern: $ => seq(
-            optional($.anchor_begin),
-            repeat(
-                choice(
-                    alias(i("$"), $.character), // To resolve ambiguities with the end anchor
-                    $.character,
-                    $.class,
-                    $.set,
-                    $.negated_set,
-                    $.capture,
-                )
-            ),
-            optional($.anchor_end),
+  rules: {
+    pattern: $ => seq(
+      optional($.anchor_begin),
+      repeat(
+        choice(
+          alias(token.immediate('$'), $.character), // To resolve ambiguities with the end anchor
+          $.character,
+          $.class_pattern,
+          $.set,
+          $.negated_set,
+          $.capture,
         ),
+      ),
+      optional($.anchor_end),
+    ),
 
-        anchor_begin: _ => i("^"),
-        anchor_end: _ => prec(1, i("$")),
+    anchor_begin: _ => token.immediate('^'),
+    anchor_end: _ => prec(1, token.immediate('$')),
 
-        _raw_character: _ => choice(i(/[^%\(\[\.\n]/), "."),
+    _raw_character: _ => choice(token.immediate(/[^%\(\[\.\n]/), '.'),
 
-        character: $ => seq(
-            $._raw_character,
-            optional($.quantifier),
+    character: $ => seq(
+      $._raw_character,
+      optional($.quantifier),
+    ),
+
+    all_letters_char: _ => token.immediate('a'),
+    control_char: _ => token.immediate('c'),
+    digit_char: _ => token.immediate('d'),
+    printable_char: _ => token.immediate('g'),
+    lowercase_char: _ => token.immediate('l'),
+    punctuation_char: _ => token.immediate('p'),
+    space_char: _ => token.immediate('s'),
+    uppercase_char: _ => token.immediate('u'),
+    alphanumeric_char: _ => token.immediate('w'),
+    hexadecimal_char: _ => token.immediate('x'),
+    escape_char: _ => token.immediate(/\W/),
+    capture_index: _ => token.immediate(/[1-9]/),
+    balanced_match: $ => seq(
+      token.immediate('b'),
+      field('first', alias(token.immediate(/./), $.character)),
+      field('last', alias(token.immediate(/./), $.character)),
+    ),
+
+    frontier_pattern: $ => seq(
+      token.immediate('%f'),
+      choice(
+        $.set,
+        $.negated_set,
+      ),
+    ),
+
+    zero_or_more: _ => token.immediate('*'),
+    shortest_zero_or_more: _ => token.immediate('-'),
+    one_or_more: _ => token.immediate('+'),
+    zero_or_one: _ => token.immediate('?'),
+
+    quantifier: $ => choice(
+      $.zero_or_more,
+      $.shortest_zero_or_more,
+      $.one_or_more,
+      $.zero_or_one,
+    ),
+
+    class: $ => seq(
+      token.immediate('%'),
+      choice(
+        $.all_letters_char,
+        $.control_char,
+        $.digit_char,
+        $.printable_char,
+        $.lowercase_char,
+        $.punctuation_char,
+        $.space_char,
+        $.uppercase_char,
+        $.alphanumeric_char,
+        $.hexadecimal_char,
+        $.capture_index,
+        $.balanced_match,
+        $.escape_char,
+      ),
+    ),
+
+    class_pattern: $ => prec.right(seq(
+      choice($.class, $.frontier_pattern),
+      optional($.quantifier),
+    )),
+
+    range: $ => prec.dynamic(1, seq(
+      field('from', alias($._raw_character, $.character)),
+      token.immediate('-'),
+      field('to', alias(/[^\]]/, $.character)),
+    )),
+
+    set: $ => prec.left(seq(
+      token.immediate('['),
+      repeat1(
+        choice(
+          alias($._raw_character, $.character),
+          alias(token.immediate('-'), $.character),
+          alias(token.immediate('('), $.character),
+          $.range,
+          $.class,
         ),
+      ),
+      token.immediate(']'),
+      optional($.quantifier),
+    )),
 
-        all_letters_char: _ => i("a"),
-        control_char: _ => i("c"),
-        digit_char: _ => i("d"),
-        printable_char: _ => i("g"),
-        lowercase_char: _ => i("l"),
-        punctuation_char: _ => i("p"),
-        space_char: _ => i("s"),
-        uppercase_char: _ => i("u"),
-        alphanumeric_char: _ => i("w"),
-        hexadecimal_char: _ => i("x"),
-        escape_char: _ => i(/\W/),
-        capture_index: _ => i(/[1-9]/),
-        balanced_match: $ => seq(
-            i("b"),
-            field("first", alias(i(/./), $.character)),
-            field("last", alias(i(/./), $.character)),
+    negated_set: $ => prec.left(seq(
+      token.immediate('['),
+      token.immediate('^'),
+      repeat1(
+        choice(
+          alias($._raw_character, $.character),
+          alias(token.immediate('-'), $.character),
+          alias(token.immediate('('), $.character),
+          $.range,
+          $.class,
         ),
+      ),
+      token.immediate(']'),
+      optional($.quantifier),
+    )),
 
-        frontier_pattern: $ => seq(
-            i("%f"),
-            choice(
-                $.set,
-                $.negated_set,
-            ),
+    capture: $ => seq(
+      token.immediate('('),
+      repeat(
+        choice(
+          $.set,
+          $.negated_set,
+          $.class_pattern,
+          $.character,
+          $.capture,
         ),
-
-        zero_or_more: _ => i("*"),
-        shortest_zero_or_more: _ => i("-"),
-        one_or_more: _ => i("+"),
-        zero_or_one: _ => i("?"),
-
-        quantifier: $ => choice(
-            $.zero_or_more,
-            $.shortest_zero_or_more,
-            $.one_or_more,
-            $.zero_or_one,
-        ),
-
-        _class: $ => seq(
-            i("%"),
-            choice(
-                $.all_letters_char,
-                $.control_char,
-                $.digit_char,
-                $.printable_char,
-                $.lowercase_char,
-                $.punctuation_char,
-                $.space_char,
-                $.uppercase_char,
-                $.alphanumeric_char,
-                $.hexadecimal_char,
-                $.capture_index,
-                $.balanced_match,
-                $.escape_char,
-            ),
-        ),
-
-        class: $ => prec.right(seq(
-            choice($._class, $.frontier_pattern),
-            optional($.quantifier),
-        )),
-
-        range: $ => prec.dynamic(1, seq(
-            field("from", alias($._raw_character, $.character)),
-            i("-"),
-            field("to", alias(/[^\]]/, $.character)),
-        )),
-
-        set: $ => prec.left(seq(
-            i("["),
-            repeat1(
-                choice(
-                    alias($._raw_character, $.character),
-                    alias(i("-"), $.character),
-                    alias(i("("), $.character),
-                    $.range,
-                    $._class,
-                )
-            ),
-            i("]"),
-            optional($.quantifier),
-        )),
-
-        negated_set: $ => prec.left(seq(
-            i("["),
-            i("^"),
-            repeat1(
-                choice(
-                    alias($._raw_character, $.character),
-                    alias(i("-"), $.character),
-                    alias(i("("), $.character),
-                    $.range,
-                    $._class,
-                )
-            ),
-            i("]"),
-            optional($.quantifier),
-        )),
-
-        capture: $ => seq(
-            i("("),
-            repeat(
-                choice(
-                    $.set,
-                    $.negated_set,
-                    $.class,
-                    $.character,
-                    $.capture,
-                ),
-            ),
-            i(")"),
-            optional($.quantifier),
-        ),
-    },
-})
+      ),
+      token.immediate(')'),
+      optional($.quantifier),
+    ),
+  },
+});
