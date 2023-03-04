@@ -52,7 +52,7 @@
           "named": true
         },
         {
-          "type": "class",
+          "type": "class_pattern",
           "named": true
         },
         {
@@ -114,7 +114,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -146,19 +146,11 @@
           "named": true
         },
         {
-          "type": "frontier_pattern",
-          "named": true
-        },
-        {
           "type": "hexadecimal_char",
           "named": true
         },
         {
           "type": "lowercase_char",
-          "named": true
-        },
-        {
-          "type": "one_or_more",
           "named": true
         },
         {
@@ -170,15 +162,38 @@
           "named": true
         },
         {
-          "type": "shortest_zero_or_more",
-          "named": true
-        },
-        {
           "type": "space_char",
           "named": true
         },
         {
           "type": "uppercase_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "frontier_pattern",
+          "named": true
+        },
+        {
+          "type": "one_or_more",
+          "named": true
+        },
+        {
+          "type": "shortest_zero_or_more",
           "named": true
         },
         {
@@ -220,55 +235,15 @@
       "required": true,
       "types": [
         {
-          "type": "all_letters_char",
-          "named": true
-        },
-        {
-          "type": "alphanumeric_char",
-          "named": true
-        },
-        {
-          "type": "balanced_match",
-          "named": true
-        },
-        {
-          "type": "capture_index",
-          "named": true
-        },
-        {
           "type": "character",
           "named": true
         },
         {
-          "type": "control_char",
-          "named": true
-        },
-        {
-          "type": "digit_char",
-          "named": true
-        },
-        {
-          "type": "escape_char",
-          "named": true
-        },
-        {
-          "type": "hexadecimal_char",
-          "named": true
-        },
-        {
-          "type": "lowercase_char",
+          "type": "class",
           "named": true
         },
         {
           "type": "one_or_more",
-          "named": true
-        },
-        {
-          "type": "printable_char",
-          "named": true
-        },
-        {
-          "type": "punctuation_char",
           "named": true
         },
         {
@@ -277,14 +252,6 @@
         },
         {
           "type": "shortest_zero_or_more",
-          "named": true
-        },
-        {
-          "type": "space_char",
-          "named": true
-        },
-        {
-          "type": "uppercase_char",
           "named": true
         },
         {
@@ -323,7 +290,7 @@
           "named": true
         },
         {
-          "type": "class",
+          "type": "class_pattern",
           "named": true
         },
         {
@@ -372,55 +339,15 @@
       "required": true,
       "types": [
         {
-          "type": "all_letters_char",
-          "named": true
-        },
-        {
-          "type": "alphanumeric_char",
-          "named": true
-        },
-        {
-          "type": "balanced_match",
-          "named": true
-        },
-        {
-          "type": "capture_index",
-          "named": true
-        },
-        {
           "type": "character",
           "named": true
         },
         {
-          "type": "control_char",
-          "named": true
-        },
-        {
-          "type": "digit_char",
-          "named": true
-        },
-        {
-          "type": "escape_char",
-          "named": true
-        },
-        {
-          "type": "hexadecimal_char",
-          "named": true
-        },
-        {
-          "type": "lowercase_char",
+          "type": "class",
           "named": true
         },
         {
           "type": "one_or_more",
-          "named": true
-        },
-        {
-          "type": "printable_char",
-          "named": true
-        },
-        {
-          "type": "punctuation_char",
           "named": true
         },
         {
@@ -429,14 +356,6 @@
         },
         {
           "type": "shortest_zero_or_more",
-          "named": true
-        },
-        {
-          "type": "space_char",
-          "named": true
-        },
-        {
-          "type": "uppercase_char",
           "named": true
         },
         {

@@ -39,7 +39,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "class"
+                "name": "class_pattern"
               },
               {
                 "type": "SYMBOL",
@@ -327,7 +327,7 @@
         }
       ]
     },
-    "_class": {
+    "class": {
       "type": "SEQ",
       "members": [
         {
@@ -396,7 +396,7 @@
         }
       ]
     },
-    "class": {
+    "class_pattern": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -407,7 +407,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_class"
+                "name": "class"
               },
               {
                 "type": "SYMBOL",
@@ -529,7 +529,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_class"
+                  "name": "class"
                 }
               ]
             }
@@ -620,7 +620,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_class"
+                  "name": "class"
                 }
               ]
             }
@@ -672,7 +672,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "class"
+                "name": "class_pattern"
               },
               {
                 "type": "SYMBOL",
