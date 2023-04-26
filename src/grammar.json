@@ -125,76 +125,6 @@
         }
       ]
     },
-    "all_letters_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "a"
-      }
-    },
-    "control_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "c"
-      }
-    },
-    "digit_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "d"
-      }
-    },
-    "printable_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "g"
-      }
-    },
-    "lowercase_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "l"
-      }
-    },
-    "punctuation_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "p"
-      }
-    },
-    "space_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "s"
-      }
-    },
-    "uppercase_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "u"
-      }
-    },
-    "alphanumeric_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "w"
-      }
-    },
-    "hexadecimal_char": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "x"
-      }
-    },
     "escape_char": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
@@ -341,44 +271,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "all_letters_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "control_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "digit_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "printable_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "lowercase_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "punctuation_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "space_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "uppercase_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "alphanumeric_char"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "hexadecimal_char"
+              "type": "PATTERN",
+              "value": "[acdglpsuwxACDGLPSUWX]"
             },
             {
               "type": "SYMBOL",

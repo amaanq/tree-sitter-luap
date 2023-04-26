@@ -115,16 +115,8 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "all_letters_char",
-          "named": true
-        },
-        {
-          "type": "alphanumeric_char",
-          "named": true
-        },
         {
           "type": "balanced_match",
           "named": true
@@ -134,39 +126,7 @@
           "named": true
         },
         {
-          "type": "control_char",
-          "named": true
-        },
-        {
-          "type": "digit_char",
-          "named": true
-        },
-        {
           "type": "escape_char",
-          "named": true
-        },
-        {
-          "type": "hexadecimal_char",
-          "named": true
-        },
-        {
-          "type": "lowercase_char",
-          "named": true
-        },
-        {
-          "type": "printable_char",
-          "named": true
-        },
-        {
-          "type": "punctuation_char",
-          "named": true
-        },
-        {
-          "type": "space_char",
-          "named": true
-        },
-        {
-          "type": "uppercase_char",
           "named": true
         }
       ]
@@ -415,14 +375,6 @@
     "named": false
   },
   {
-    "type": "all_letters_char",
-    "named": true
-  },
-  {
-    "type": "alphanumeric_char",
-    "named": true
-  },
-  {
     "type": "b",
     "named": false
   },
@@ -431,43 +383,11 @@
     "named": true
   },
   {
-    "type": "control_char",
-    "named": true
-  },
-  {
-    "type": "digit_char",
-    "named": true
-  },
-  {
     "type": "escape_char",
     "named": true
   },
   {
-    "type": "hexadecimal_char",
-    "named": true
-  },
-  {
-    "type": "lowercase_char",
-    "named": true
-  },
-  {
     "type": "one_or_more",
-    "named": true
-  },
-  {
-    "type": "printable_char",
-    "named": true
-  },
-  {
-    "type": "punctuation_char",
-    "named": true
-  },
-  {
-    "type": "space_char",
-    "named": true
-  },
-  {
-    "type": "uppercase_char",
     "named": true
   },
   {
