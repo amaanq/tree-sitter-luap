@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-luap",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Lua Patterns grammar for tree-sitter",
   "main": "bindings/node",
   "keywords": [

@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-luap"
 description = "Lua Patterns grammar for tree-sitter"
-version = "0.0.1"
+version = "1.0.0"
 authors = ["Vhyrro <vhyrro@gmail.com>", "Amaan Qureshi <amaanq12@gmail.com>"]
 license = "MIT"
 readme = "bindings/rust/README.md"
