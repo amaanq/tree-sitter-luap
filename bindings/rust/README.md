@@ -8,7 +8,7 @@ way.)
 
 ```toml
 [dependencies]
-tree-sitter = "~0.20.3"
+tree-sitter = "~0.20.10"
 tree-sitter-luap = "0.0.1"
 ```
 
