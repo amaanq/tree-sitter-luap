@@ -609,12 +609,8 @@
   ],
   "conflicts": [
     [
-      "set",
-      "range"
-    ],
-    [
-      "negated_set",
-      "range"
+      "range",
+      "set"
     ]
   ],
   "precedences": [],

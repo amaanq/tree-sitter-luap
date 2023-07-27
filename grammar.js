@@ -20,8 +20,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.set, $.range],
-    [$.negated_set, $.range],
+    [$.range, $.set],
   ],
 
   rules: {
