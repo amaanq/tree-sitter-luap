@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/amaanq/tree-sitter-luap/compare/v1.0.0...v1.0.1) (2023-07-27)
+
+
+### Bug Fixes
+
+* remove unnecessary conflict ([085828e](https://github.com/amaanq/tree-sitter-luap/commit/085828ead3426af339daf044f7005561115f3111))
+
 ## 1.0.0 (2023-05-13)
 
 
