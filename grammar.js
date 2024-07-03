@@ -49,7 +49,7 @@ module.exports = grammar({
       optional($.quantifier),
     ),
 
-    escape_char: _ => token.immediate(/\W/),
+    escape_char: _ => token.immediate(/[^a-zA-Z0-9]/),
     capture_index: _ => token.immediate(/[1-9]/),
     balanced_match: $ => seq(
       token.immediate('b'),
@@ -141,7 +141,6 @@ module.exports = grammar({
         ),
       ),
       token.immediate(')'),
-      optional($.quantifier),
     ),
   },
 });
